@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* CSS untuk keseluruhan proyek */
+        /* CSS untuk keseluruhan proyek */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header {
+    background: #f8f8f8;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+header nav {
+    display: flex;
+    gap: 15px;
+}
+header nav a {
+    text-decoration: none;
+    color: #333;
+}
+.container {
+    padding: 20px;
+}
+.banner {
+    text-align: center;
+    padding: 50px;
+}
+.banner h1 {
+    margin: 0;
+}
+.locations {
+    text-align: center;
+    padding: 20px;
+}
+.locations div {
+    display: inline-block;
+    margin: 10px;
+}
+.contact-form {
+    padding: 20px;
+    background: #f8f8f8;
+}
+.contact-form form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+.contact-form form div {
+    margin-bottom: 15px;
+}
+.contact-form form label {
+    display: block;
+    margin-bottom: 5px;
+}
+.contact-form form input, .contact-form form textarea, .contact-form form button {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #f8f8f8;
+    border-top: 1px solid #ccc;
+}
+@media (max-width: 768px) {
+    header nav {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+    .locations div {
+        display: block;
+        margin: 10px auto;
+    }
+}  
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">My Website</div>
+        <nav>
+            <a href="#" onclick="showHome()">Home</a>
+            <a href="#" onclick="showProfile()">Our Profile</a>
+            <a href="#">Portfolio</a>
+            <a href="#">Message Us</a>
+        </nav>
+    </header>
+
+    <div id="home" class="container">
+        <div class="banner">
+            <h1 id="welcomeMessage">Hi, Welcome To Website</h1>
+            <p>Ini adalah website latihan pertama</p>
+            <p>13B8+3/2</p>
+        </div>
+        <div class="locations">
+            <h2>Our Headquarter</h2>
+            <div>
+                <img src="jakarta.png" alt="Jakarta" width="100">
+                <p>Jakarta</p>
+            </div>
+            <div>
+                <img src="bandung.png" alt="Bandung" width="100">
+                <p>Bandung</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="profile" class="container" style="display:none;">
+        <div class="banner">
+            <h1>About Our Company</h1>
+            <p>Photo Banner</p>
+        </div>
+        <div class="about">
+            <h2>About the Company</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel urna id felis interdum dictum.</p>
+        </div>
+        <div class="vision-mission">
+            <h2>Vision and Mission</h2>
+            <p>Vision: To be the leading company in our industry.</p>
+            <p>Mission: To provide the best services to our customers with integrity and innovation.</p>
+        </div>
+    </div>
+
+    <div class="contact-form container">
+        <h2>Message Us</h2>
+        <form id="messageForm" onsubmit="validateForm(event)">
+            <div>
+                <label for="name">Nama</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="dob">Tanggal Lahir</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+            <div>
+                <label>Jenis Kelamin</label>
+                <input type="radio" id="male" name="gender" value="Laki-Laki" required>
+                <label for="male">Laki-Laki</label>
+                <input type="radio" id="female" name="gender" value="Perempuan" required>
+                <label for="female">Perempuan</label>
+            </div>
+            <div>
+                <label for="message">Pesan</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="formResult"></div>
+    </div>
+
+    <footer>
+        <p>Created by [Your Name]</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // JavaScript untuk keseluruhan proyek
+        document.addEventListener('DOMContentLoaded', function() {
+            var name = prompt("Please enter your name:");
+            document.getElementById('welcomeMessage').textContent = 'Hi ' + name + ', Welcome To Website';
+        });
+
+        function showHome() {
+            document.getElementById('home').style.display = 'block';
+            document.getElementById('profile').style.display = 'none';
+        }
+
+        function showProfile() {
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('profile').style.display = 'block';
+        }
+
+        function validateForm(event) {
+            event.preventDefault();
+            var name = document.getElementById('name').value;
+            var dob = document.getElementById('dob').value;
+            var gender = document.querySelector('input[name="gender"]:checked').value;
+            var message = document.getElementById('message').value;
+
+            var formResult = document.getElementById('formResult');
+            formResult.innerHTML = `
+                <h3>Form Data</h3>
+                <p>Nama: ${name}</p>
+                <p>Tanggal Lahir: ${dob}</p>
+                <p>Jenis Kelamin: ${gender}</p>
+                <p>Pesan: ${message}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
